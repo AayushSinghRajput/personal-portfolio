@@ -5,7 +5,7 @@ import connectDB from "./config/db";
 import contactRoutes from "./routes/contactRoutes";
 dotenv.config();
 const app = express();
-const PORT: number = Number(process.env.PORT) || 5000;
+const PORT: number = Number(process.env.PORT) || 5001;
 connectDB();
 app.use(express.json());
 

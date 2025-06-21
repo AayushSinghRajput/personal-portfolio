@@ -1,50 +1,41 @@
 import React, { useState } from "react";
-import { FaFacebook } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa6";
+import { FaFacebook, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLocationDot } from "react-icons/fa6";
 import { TiMessage } from "react-icons/ti";
 import { IoIosCall } from "react-icons/io";
-import { FaLocationDot } from "react-icons/fa6";
-import axios from "axios";
 import { toast } from "react-toastify";
+import { contactApi } from "../Apis/contact.ts";
+import { ContactData } from "../types";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactData>({
     name: "",
     email: "",
     message: "",
   });
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const res = await axios.post(
-      "http://localhost:5000/api/contact/submit",
-      {
-        name: formData.name,
-        email: formData.email,
-        message: formData.message,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    if (res.data) {
-      toast.success("Message Sent Successfully!");
-      setFormData({
-        name: "",
-        email: "",
-        message: "",
-      });
-    } else {
-      toast.error("Failed to send message.");
-    }
-  };
-  const handleChange = (e) => {
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await contactApi(formData);
+      toast.success("Message sent successfully...");
+      console.log(response.data);
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      toast.error("Failed to send message.");
+      console.error(error);
+    }
+  };
+
   return (
     <div className="flex flex-row items-center justify-between bg-cyan-600 p-3 w-full gap-2">
+      {/* Left Info */}
       <div className="flex flex-col items-start gap-5 w-1/2">
         <div className="mb-3">
           <h3 className="text-5xl text-white font-bold">
@@ -54,48 +45,44 @@ const Contact = () => {
           </h3>
         </div>
         <div className="gap-10 flex flex-col">
-          <p className="text-white text-2xl items-center  flex flex-row gap-2  font-semibold">
-            {" "}
+          <p className="text-white text-2xl flex flex-row gap-2 font-semibold">
             <TiMessage />
             aayushsinghrajput812@gmail.com
           </p>
-          <p className="text-white text-2xl items-center flex flex-row gap-2 font-semibold">
-            {" "}
+          <p className="text-white text-2xl flex flex-row gap-2 font-semibold">
             <IoIosCall />
             +977-9805981168
           </p>
-          <p className="text-white text-2xl items-center flex flex-row gap-2 font-semibold">
-            {" "}
+          <p className="text-white text-2xl flex flex-row gap-2 font-semibold">
             <FaLocationDot />
-            Dharan,Sunsari,Nepal
+            Dharan, Sunsari, Nepal
           </p>
         </div>
         <div className="flex flex-row gap-10 text-4xl mt-4">
           <a
             href="https://www.facebook.com/aayush.singh.rajput.36062"
-            className="text-white cursor-pointer"
+            className="text-white"
           >
             <FaFacebook />
           </a>
           <a
             href="https://www.linkedin.com/in/aayush-singh-rajput-7314b7279/"
-            className="text-white cursor-pointer"
+            className="text-white"
           >
             <FaLinkedin />
           </a>
-          <a
-            href="https://github.com/AayushSinghRajput"
-            className="text-white cursor-pointer"
-          >
+          <a href="https://github.com/AayushSinghRajput" className="text-white">
             <FaGithub />
           </a>
         </div>
       </div>
+
+      {/* Contact Form */}
       <div className="flex flex-col mr-[70px] w-1/2 bg-white p-8 rounded-lg">
         <div className="flex items-center justify-center">
           <h2 className="text-3xl font-bold text-orange-500">Let's Connect</h2>
         </div>
-        <form action="post" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className="flex flex-col mb-3">
             <label htmlFor="name" className="font-semibold">
               Enter your name
@@ -129,7 +116,6 @@ const Contact = () => {
               Enter your message
             </label>
             <textarea
-              type="text"
               name="message"
               value={formData.message}
               onChange={handleChange}
