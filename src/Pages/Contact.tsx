@@ -34,7 +34,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="flex flex-row items-center justify-between bg-cyan-600 p-3 w-full gap-2">
+    <div className="flex flex-row items-center justify-between bg-cyan-600 p-3 w-full gap-2 min-h-screen">
       {/* Left Info */}
       <div className="flex flex-col items-start gap-5 w-1/2">
         <div className="mb-3">
@@ -45,18 +45,18 @@ const Contact = () => {
           </h3>
         </div>
         <div className="gap-10 flex flex-col">
-          <p className="text-white text-2xl flex flex-row gap-2 font-semibold">
+          <div className="flex flex-row items-center justify-center text-white text-2xl gap-2 font-semibold">
             <TiMessage />
-            aayushsinghrajput812@gmail.com
-          </p>
-          <p className="text-white text-2xl flex flex-row gap-2 font-semibold">
+            <p>aayushsinghrajput812@gmail.com</p>
+          </div>
+          <div className="flex flex-row items-center  text-white text-2xl gap-2 font-semibold">
             <IoIosCall />
-            +977-9805981168
-          </p>
-          <p className="text-white text-2xl flex flex-row gap-2 font-semibold">
+            <p>+977-9805981168</p>
+          </div>
+          <div className="flex flex-row items-center  text-white text-2xl gap-2 font-semibold">
             <FaLocationDot />
-            Dharan, Sunsari, Nepal
-          </p>
+            <p>Dharan, Sunsari, Nepal</p>
+          </div>
         </div>
         <div className="flex flex-row gap-10 text-4xl mt-4">
           <a

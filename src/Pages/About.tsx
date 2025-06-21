@@ -16,8 +16,8 @@ import { DiMongodb } from "react-icons/di";
 
 const About = () => {
   return (
-    <div className="flex flex-col p-2 bg-cyan-200">
-      <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col p-4 min-h-screen bg-cyan-300">
+      <div className="flex flex-col items-center justify-center mt-8">
         <h3 className="font-bold text-3xl mb-3 text-amber-600">Personal Bio</h3>
         <p className="font-semibold text-center">
           Hey there! I'm{" "}
@@ -29,8 +29,8 @@ const About = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-3 p-2">
-        <div className="mt-2 flex flex-col">
+      <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-3">
+        <div className="mt-8 flex flex-col">
           <h3 className="text-2xl mb-3 font-bold text-orange-400">
             Background
           </h3>
@@ -43,7 +43,7 @@ const About = () => {
           </p>
         </div>
 
-        <div className="mt-2 flex flex-col">
+        <div className="mt-8 flex flex-col">
           <h3 className="text-2xl mb-3 font-bold text-pink-500">
             Skills & Tools
           </h3>
@@ -81,7 +81,7 @@ const About = () => {
           </ul>
         </div>
 
-        <div className="mt-2 flex flex-col">
+        <div className="mt-8 flex flex-col">
           <h3 className="text-2xl mb-3 font-bold text-green-600">Mission</h3>
           <p className="font-semibold text-green-500">
             My mission is to build impactful web solutions that solve real-world
@@ -91,7 +91,7 @@ const About = () => {
           </p>
         </div>
 
-        <div className="mt-2 flex flex-col">
+        <div className="mt-8 flex flex-col">
           <h3 className="text-2xl mb-3 font-bold text-purple-600">
             Personality
           </h3>
@@ -103,7 +103,7 @@ const About = () => {
         </div>
       </div>
 
-      <div className="mt-3 flex flex-col items-center">
+      <div className="mt-4 flex flex-col items-center">
         <p className="font-semibold">
           I'm always open to new opportunities, collaborations, or just a
           friendly chat. Feel free to{" "}
