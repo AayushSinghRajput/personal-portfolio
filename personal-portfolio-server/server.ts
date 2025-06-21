@@ -9,7 +9,7 @@ const PORT: number = Number(process.env.PORT) || 5001;
 connectDB();
 app.use(express.json());
 
-const allowedOrigins = ["https://personal-portfolio-frontend-inky.vercel.app/"];
+const allowedOrigins = ["https://personal-portfolio-frontend-inky.vercel.app"];
 const corsOptions: cors.CorsOptions = {
   origin: allowedOrigins,
   methods: "GET,PUT,POST,DELETE,PATCH,HEAD",
